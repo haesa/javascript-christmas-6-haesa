@@ -1,36 +1,46 @@
 # 🚀 기능 목록
 
-- [ ] 총주문 금액 계산하기 - `App: this.#calculateTotalAmount(orderList)`
+- [x] 총주문 금액 계산하기
 
-- [ ] 증정 이벤트 대상인지 확인한다. - `App: this.#isGiveawayRecipient()`
+  - `Service: this.calculateOrderAmount()`
 
-  - 할인 전 총주문 금액이 12만 원 이상일 때, 샴페인 1개 증정
+- [ ] 증정 이벤트 대상인지 확인한다.
 
-- [ ] 총혜택 금액에 따라 이벤트 배지 부여하기 - `App: this.#grantBadge()`
+  - `App: this.#isGiveawayRecipient()`
+    - 할인 전 총주문 금액이 12만 원 이상일 때, 샴페인 1개 증정
 
-  - 5천 원 이상: 별
-  - 1만 원 이상: 트리
-  - 2만 원 이상: 산타
+- [ ] 총혜택 금액에 따라 이벤트 배지 부여하기
 
-- [x] 총 할인 내역 계산하기 - `Discount: this.calculateTotalDiscount()`
+  - `App: this.#grantBadge()`
+    - 5천 원 이상: 별
+    - 1만 원 이상: 트리
+    - 2만 원 이상: 산타
 
-  - [x] 크리스마스 디데이 할인 금액 계산 - `Discount: this.#calculateChristmasDiscount()`
+- [x] 총 할인 내역 계산하기
 
-    - 1일부터 25일까지만 진행한다.
-    - 할인 금액은 1,000원으로 시작해서 하루에 100원씩 증가한다.
+  - `Discount: this.calculateTotalDiscount()`
 
-  - [x] 평일 할인 계산하기 - `Discount: this.#calculateWeekdayDiscount()`
+  - [x] 크리스마스 디데이 할인 금액 계산
 
-    - 날짜를 7로 나눈 나머지가 1과 2가 아니면 평일이다.
+    - `Discount: this.#calculateChristmasDiscount()`
+      - 1일부터 25일까지만 진행한다.
+      - 할인 금액은 1,000원으로 시작해서 하루에 100원씩 증가한다.
 
-  - [x] 주말 할인 계산하기 - `Discount: this.#calculateWeekendDiscount()`
+  - [x] 평일 할인 계산하기
 
-    - 날짜를 7로 나눈 나머지가 1과 2이면 주말이다.
+    - `Discount: this.#calculateWeekdayDiscount()`
+      - 날짜를 7로 나눈 나머지가 1과 2가 아니면 평일이다.
 
-  - [x] 특별 할인 계산하기 - `Discount: this.#calculateSpecialDiscount()`
+  - [x] 주말 할인 계산하기
 
-    - 일요일에 할인한다(날짜를 7로 나눈 나머지가 3이면 일요일이다).
-    - 25일(크리스마스)에 할인한다.
+    - `Discount: this.#calculateWeekendDiscount()`
+      - 날짜를 7로 나눈 나머지가 1과 2이면 주말이다.
+
+  - [x] 특별 할인 계산하기
+
+    - `Discount: this.#calculateSpecialDiscount()`
+      - 일요일에 할인한다(날짜를 7로 나눈 나머지가 3이면 일요일이다).
+      - 25일(크리스마스)에 할인한다.
 
 ## 주의 사항
 
@@ -61,3 +71,19 @@
   - [ ] 총주문 메뉴가 20개가 넘어가면 `"[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다."`라는 에러 메시지를 보여준다.
 
   - [ ] 음료만 주문 시 `"[ERROR] 음료만 주문할 수 없습니다."`라는 에러 메시지를 보여준다.
+
+# 메뉴
+
+```
+<애피타이저>
+양송이수프(6,000), 타파스(5,500), 시저샐러드(8,000)
+
+<메인>
+티본스테이크(55,000), 바비큐립(54,000), 해산물파스타(35,000), 크리스마스파스타(25,000)
+
+<디저트>
+초코케이크(15,000), 아이스크림(5,000)
+
+<음료>
+제로콜라(3,000), 레드와인(60,000), 샴페인(25,000)
+```
