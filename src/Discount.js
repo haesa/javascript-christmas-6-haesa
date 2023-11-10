@@ -1,3 +1,4 @@
+import { CATEGORY } from './constants/index.js';
 import DATE from './utils/date.js';
 
 class Discount {
@@ -43,9 +44,12 @@ class Discount {
       return 0;
     }
 
-    const { dessert } = this.#orderDetails;
+    const dessert = this.#orderDetails.filter(
+      order => order.category === CATEGORY.dessert
+    );
+
     const dessertQuantity = dessert.reduce(
-      (totalQuantity, menu) => totalQuantity + menu.quantity,
+      (totalQuantity, { quantity }) => totalQuantity + quantity,
       0
     );
 
@@ -57,9 +61,12 @@ class Discount {
       return 0;
     }
 
-    const { main } = this.#orderDetails;
+    const main = this.#orderDetails.filter(
+      order => order.category === CATEGORY.main
+    );
+
     const mainQuantity = main.reduce(
-      (totalQuantity, menu) => totalQuantity + menu.quantity,
+      (totalQuantity, { quantity }) => totalQuantity + quantity,
       0
     );
 

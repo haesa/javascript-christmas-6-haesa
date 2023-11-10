@@ -1,15 +1,13 @@
 import Discount from '../src/Discount';
 
 describe('Discount 클래스 테스트', () => {
-  const orderDetails = {
-    appetizer: [{ menu: '양송이수프', quantity: 2 }],
-    main: [
-      { menu: '크리스마스파스타', quantity: 2 },
-      { menu: '바비큐립', quantity: 1 },
-    ],
-    dessert: [{ menu: '아이스크림', quantity: 2 }],
-    drink: [{ menu: '제로콜라', quantity: 1 }],
-  };
+  const orderDetails = [
+    { menu: '양송이수프', quantity: 2, cetecory: 'appetizer' },
+    { menu: '크리스마스파스타', quantity: 2, category: 'main' },
+    { menu: '바비큐립', quantity: 1, category: 'main' },
+    { menu: '아이스크림', quantity: 2, category: 'dessert' },
+    { menu: '제로콜라', quantity: 1, category: 'drink' },
+  ];
 
   test('할인 금액을 계산한다.', () => {
     const discount = new Discount(23, orderDetails);
