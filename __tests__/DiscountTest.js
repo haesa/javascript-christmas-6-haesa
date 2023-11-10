@@ -11,9 +11,16 @@ describe('Discount 클래스 테스트', () => {
     drink: [{ menu: '제로콜라', quantity: 1 }],
   };
 
+  test('할인 금액을 계산한다.', () => {
+    const discount = new Discount(23, orderDetails);
+    const discountAmount = discount.calculateDiscountAmount();
+
+    expect(discountAmount).toBe(9269);
+  });
+
   test('할인 내역을 반환한다. - 크리스마스, 주말', () => {
     const discount = new Discount(23, orderDetails);
-    const discountDetails = discount.calculateTotalDiscount();
+    const discountDetails = discount.checkDiscountDetails();
 
     expect(discountDetails).toStrictEqual({
       christmas: 3200,
@@ -25,7 +32,7 @@ describe('Discount 클래스 테스트', () => {
 
   test('할인 내역을 반환한다. - 평일, 특별', () => {
     const discount = new Discount(31, orderDetails);
-    const discountDetails = discount.calculateTotalDiscount();
+    const discountDetails = discount.checkDiscountDetails();
 
     expect(discountDetails).toStrictEqual({
       christmas: 0,

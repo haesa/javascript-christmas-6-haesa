@@ -13,7 +13,15 @@ class Discount {
     this.#orderDetails = orderDetails;
   }
 
-  calculateTotalDiscount() {
+  calculateDiscountAmount() {
+    const discountDetails = this.checkDiscountDetails();
+    return Object.values(discountDetails).reduce(
+      (total, amount) => total + amount,
+      0
+    );
+  }
+
+  checkDiscountDetails() {
     return {
       christmas: this.#calculateChristmasDiscount(),
       weekday: this.#calculateWeekdayDiscount(),
