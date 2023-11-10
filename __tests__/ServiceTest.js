@@ -29,4 +29,19 @@ describe('Service 테스트', () => {
     const isGiveawayRecipient = service.isGiveawayRecipient(120000);
     expect(isGiveawayRecipient).toBe(true);
   });
+
+  test('산타 배지를 부여한다.', () => {
+    const badge = service.grantBadge(20000);
+    expect(badge).toBe('산타');
+  });
+
+  test('트리 배지를 부여한다.', () => {
+    const badge = service.grantBadge(10000);
+    expect(badge).toBe('트리');
+  });
+
+  test('별 배지를 부여한다.', () => {
+    const badge = service.grantBadge(5000);
+    expect(badge).toBe('별');
+  });
 });

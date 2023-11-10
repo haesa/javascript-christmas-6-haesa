@@ -1,4 +1,4 @@
-import { PRICE, THRESHOLD } from './constants/index.js';
+import { BADGE, NOTHING, PRICE, THRESHOLD } from './constants/index.js';
 
 class Service {
   #orderDetails;
@@ -24,6 +24,22 @@ class Service {
 
   isGiveawayRecipient(totalAmount) {
     return totalAmount >= THRESHOLD.giveaway;
+  }
+
+  grantBadge(totalBenefitAmount) {
+    if (totalBenefitAmount >= THRESHOLD.benefit.santa) {
+      return BADGE.santa;
+    }
+
+    if (totalBenefitAmount >= THRESHOLD.benefit.tree) {
+      return BADGE.tree;
+    }
+
+    if (totalBenefitAmount >= THRESHOLD.benefit.star) {
+      return BADGE.star;
+    }
+
+    return NOTHING;
   }
 }
 

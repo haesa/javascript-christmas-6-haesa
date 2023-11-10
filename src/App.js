@@ -1,7 +1,10 @@
-import Service from './Service';
+import { PRICE } from './constants/index.js';
+import Discount from './Discount.js';
+import Service from './Service.js';
 
 class App {
-  #totalAmount;
+  #totalOrderAmount;
+  #totalBenefitAmount;
   #isGiveawayRecipient;
 
   async run() {
@@ -15,8 +18,16 @@ class App {
       drink: [{ menu: '제로콜라', quantity: 1 }],
     };
     const service = new Service(orderDetails);
-    this.#totalAmount = service.calculateOrderAmount();
+    this.#totalOrderAmount = service.calculateOrderAmount();
     this.#isGiveawayRecipient = service.isGiveawayRecipient(this.#totalAmount);
+
+    const discount = new Discount(24, orderDetails);
+    const discountAmount = discount.calculateDiscountAmount();
+    this.#totalBenefitAmount = this.#isGiveawayRecipient
+      ? discountAmount + PRICE['샴폐인']
+      : discountAmount;
+
+    service.grantBadge(this.#totalBenefitAmount);
   }
 }
 
