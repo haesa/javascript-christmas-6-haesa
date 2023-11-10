@@ -4,7 +4,7 @@
 
   - `Service: this.calculateOrderAmount()`
 
-- [ ] 증정 이벤트 대상인지 확인한다.
+- [x] 증정 이벤트 대상인지 확인한다.
 
   - `App: this.#isGiveawayRecipient()`
     - 할인 전 총주문 금액이 12만 원 이상일 때, 샴페인 1개 증정

@@ -1,4 +1,4 @@
-import { PRICE } from './constants/index.js';
+import { PRICE, THRESHOLD } from './constants/index.js';
 
 class Service {
   #orderDetails;
@@ -20,6 +20,10 @@ class Service {
       (total, { menu, quantity }) => total + PRICE[menu] * quantity,
       0
     );
+  }
+
+  isGiveawayRecipient(totalAmount) {
+    return totalAmount >= THRESHOLD.giveaway;
   }
 }
 
