@@ -12,22 +12,22 @@
   - 1만 원 이상: 트리
   - 2만 원 이상: 산타
 
-- [ ] 총 할인 금액 계산하기 - `Discount: this.calculateTotalDiscount()`
+- [x] 총 할인 내역 계산하기 - `Discount: this.calculateTotalDiscount()`
 
-  - [ ] 크리스마스 디데이 할인 금액 계산 - `Discount: this.#calculateChristmasDiscount()`
+  - [x] 크리스마스 디데이 할인 금액 계산 - `Discount: this.#calculateChristmasDiscount()`
 
     - 1일부터 25일까지만 진행한다.
     - 할인 금액은 1,000원으로 시작해서 하루에 100원씩 증가한다.
 
-  - [ ] 평일 할인 계산하기 - `Discount: this.#calculateWeekdayDiscount()`
+  - [x] 평일 할인 계산하기 - `Discount: this.#calculateWeekdayDiscount()`
 
     - 날짜를 7로 나눈 나머지가 1과 2가 아니면 평일이다.
 
-  - [ ] 주말 할인 계산하기 - `Discount: this.#calculateWeekendDiscount()`
+  - [x] 주말 할인 계산하기 - `Discount: this.#calculateWeekendDiscount()`
 
     - 날짜를 7로 나눈 나머지가 1과 2이면 주말이다.
 
-  - [ ] 특별 할인 계산하기 - `Discount: this.#calculateSpecialDiscount()`
+  - [x] 특별 할인 계산하기 - `Discount: this.#calculateSpecialDiscount()`
 
     - 일요일에 할인한다(날짜를 7로 나눈 나머지가 3이면 일요일이다).
     - 25일(크리스마스)에 할인한다.
