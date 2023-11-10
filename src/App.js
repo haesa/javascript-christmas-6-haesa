@@ -1,33 +1,24 @@
 import { PRICE } from './constants/index.js';
 import Discount from './Discount.js';
+import InputView from './View/InputView.js';
 import Service from './Service.js';
 
 class App {
-  #totalOrderAmount;
-  #totalBenefitAmount;
-  #isGiveawayRecipient;
-
   async run() {
-    const orderDetails = {
-      appetizer: [{ menu: '양송이수프', quantity: 2 }],
-      main: [
-        { menu: '크리스마스파스타', quantity: 2 },
-        { menu: '바비큐립', quantity: 1 },
-      ],
-      dessert: [{ menu: '아이스크림', quantity: 2 }],
-      drink: [{ menu: '제로콜라', quantity: 1 }],
-    };
-    const service = new Service(orderDetails);
-    this.#totalOrderAmount = service.calculateOrderAmount();
-    this.#isGiveawayRecipient = service.isGiveawayRecipient(this.#totalAmount);
+    const date = await InputView.readDate();
+    const orderDetails = await InputView.readOrder();
 
-    const discount = new Discount(24, orderDetails);
+    const service = new Service(orderDetails);
+    const totalOrderAmount = service.calculateOrderAmount();
+    const isGiveawayRecipient = service.isGiveawayRecipient(totalOrderAmount);
+
+    const discount = new Discount(date, orderDetails);
     const discountAmount = discount.calculateDiscountAmount();
-    this.#totalBenefitAmount = this.#isGiveawayRecipient
-      ? discountAmount + PRICE['샴폐인']
+    const totalBenefitAmount = isGiveawayRecipient
+      ? discountAmount + PRICE.giveaway
       : discountAmount;
 
-    service.grantBadge(this.#totalBenefitAmount);
+    const badge = service.grantBadge(totalBenefitAmount);
   }
 }
 

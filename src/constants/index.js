@@ -1,7 +1,19 @@
 import BADGE from './badge.js';
 import CATEGORY from './category.js';
+import ERROR from './error.js';
+import INPUT_MESSAGE from './input.js';
+import MENU from './menu.js';
 import NOTHING from './nothing.js';
 import PRICE from './price.js';
 import THRESHOLD from './threshold.js';
 
-export { BADGE, CATEGORY, NOTHING, PRICE, THRESHOLD };
+export {
+  BADGE,
+  CATEGORY,
+  ERROR,
+  INPUT_MESSAGE,
+  MENU,
+  NOTHING,
+  PRICE,
+  THRESHOLD,
+};
