@@ -1,7 +1,7 @@
-import { CATEGORY } from './constants/index.js';
+import { CATEGORY, PRICE } from './constants/index.js';
 import DATE from './utils/date.js';
 
-class Discount {
+class Benefit {
   static #DEFAULT_DISCOUNT = 1000;
   static #SPECIAL_DISCOUNT = 1000;
   static #WEEK_DISCOUNT = 2023;
@@ -14,21 +14,29 @@ class Discount {
     this.#orderDetails = orderDetails;
   }
 
-  calculateDiscountAmount() {
-    const discountDetails = this.checkDiscountDetails();
-    return Object.values(discountDetails).reduce(
-      (total, amount) => total + amount,
-      0
-    );
+  checkBenefitDetails(isEventTarget) {
+    const discountDetails = this.#checkDiscountDetails();
+    const benefitDetails = isEventTarget
+      ? { ...discountDetails, giveaway: PRICE.giveaway }
+      : discountDetails;
+
+    return benefitDetails;
   }
 
-  checkDiscountDetails() {
-    return {
+  #checkDiscountDetails() {
+    const details = {
       christmas: this.#calculateChristmasDiscount(),
       weekday: this.#calculateWeekdayDiscount(),
       weekend: this.#calculateWeekendDiscount(),
       special: this.#calculateSpecialDiscount(),
     };
+
+    return Object.keys(details) //
+      .reduce(
+        (result, key) =>
+          details[key] === 0 ? result : { ...result, [key]: details[key] },
+        {}
+      );
   }
 
   #calculateChristmasDiscount() {
@@ -36,7 +44,7 @@ class Discount {
       return 0;
     }
 
-    return Discount.#DEFAULT_DISCOUNT + (this.#date - 1) * 100;
+    return Benefit.#DEFAULT_DISCOUNT + (this.#date - 1) * 100;
   }
 
   #calculateWeekdayDiscount() {
@@ -53,7 +61,7 @@ class Discount {
       0
     );
 
-    return dessertQuantity * Discount.#WEEK_DISCOUNT;
+    return dessertQuantity * Benefit.#WEEK_DISCOUNT;
   }
 
   #calculateWeekendDiscount() {
@@ -70,12 +78,12 @@ class Discount {
       0
     );
 
-    return mainQuantity * Discount.#WEEK_DISCOUNT;
+    return mainQuantity * Benefit.#WEEK_DISCOUNT;
   }
 
   #calculateSpecialDiscount() {
-    return DATE.isSpecialDay(this.#date) ? Discount.#SPECIAL_DISCOUNT : 0;
+    return DATE.isSpecialDay(this.#date) ? Benefit.#SPECIAL_DISCOUNT : 0;
   }
 }
 
-export default Discount;
+export default Benefit;
