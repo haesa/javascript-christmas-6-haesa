@@ -3,6 +3,7 @@ import DATE from './utils/date.js';
 
 class Benefit {
   static #DEFAULT_DISCOUNT = 1000;
+  static #CHRISTMAS_DISCOUNT = 100;
   static #SPECIAL_DISCOUNT = 1000;
   static #WEEK_DISCOUNT = 2023;
 
@@ -40,11 +41,13 @@ class Benefit {
   }
 
   #calculateChristmasDiscount() {
-    if (this.#date > 25) {
+    if (DATE.isNotChristmas(this.#date)) {
       return 0;
     }
 
-    return Benefit.#DEFAULT_DISCOUNT + (this.#date - 1) * 100;
+    return (
+      Benefit.#DEFAULT_DISCOUNT + (this.#date - 1) * Benefit.#CHRISTMAS_DISCOUNT
+    );
   }
 
   #calculateWeekdayDiscount() {
