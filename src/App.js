@@ -1,24 +1,34 @@
-import { PRICE } from './constants/index.js';
-import Discount from './Discount.js';
 import InputView from './View/InputView.js';
+import OutputView from './View/OutputView.js';
 import Service from './Service.js';
 
 class App {
   async run() {
-    const date = await InputView.readDate();
-    const orderDetails = await InputView.readOrder();
+    OutputView.printHello();
+    const date = await this.#readDate();
+    const orders = await this.#readOrder();
+    OutputView.printPreviewEvent();
 
-    const service = new Service(orderDetails);
-    const totalOrderAmount = service.calculateOrderAmount();
-    const isGiveawayRecipient = service.isGiveawayRecipient(totalOrderAmount);
+    const service = new Service(date, orders);
+    service.printResult();
+  }
 
-    const discount = new Discount(date, orderDetails);
-    const discountAmount = discount.calculateDiscountAmount();
-    const totalBenefitAmount = isGiveawayRecipient
-      ? discountAmount + PRICE.giveaway
-      : discountAmount;
+  async #readDate() {
+    try {
+      return await InputView.readDate();
+    } catch (e) {
+      OutputView.printErrorMessage(e.message);
+      return await this.#readDate();
+    }
+  }
 
-    const badge = service.grantBadge(totalBenefitAmount);
+  async #readOrder() {
+    try {
+      return await InputView.readOrder();
+    } catch (e) {
+      OutputView.printErrorMessage(e.message);
+      return await this.#readOrder();
+    }
   }
 }
 

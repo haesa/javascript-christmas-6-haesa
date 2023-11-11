@@ -7,11 +7,11 @@ class Benefit {
   static #WEEK_DISCOUNT = 2023;
 
   #date;
-  #orderDetails;
+  #orders;
 
-  constructor(date, orderDetails) {
+  constructor(date, orders) {
     this.#date = date;
-    this.#orderDetails = orderDetails;
+    this.#orders = orders;
   }
 
   checkBenefitDetails(isEventTarget) {
@@ -52,7 +52,7 @@ class Benefit {
       return 0;
     }
 
-    const dessert = this.#orderDetails.filter(
+    const dessert = this.#orders.filter(
       order => order.category === CATEGORY.dessert
     );
 
@@ -69,9 +69,7 @@ class Benefit {
       return 0;
     }
 
-    const main = this.#orderDetails.filter(
-      order => order.category === CATEGORY.main
-    );
+    const main = this.#orders.filter(order => order.category === CATEGORY.main);
 
     const mainQuantity = main.reduce(
       (totalQuantity, { quantity }) => totalQuantity + quantity,

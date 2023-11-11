@@ -1,37 +1,77 @@
-import { BADGE, NOTHING, PRICE, THRESHOLD } from './constants/index.js';
+import { BADGE, PRICE, THRESHOLD } from './constants/index.js';
+import Benefit from './Benefit.js';
+import OutputView from './View/OutputView.js';
 
 class Service {
-  #orderDetails;
+  #date;
+  #orders;
 
-  constructor(orderDetails) {
-    this.#orderDetails = orderDetails;
+  constructor(date, orders) {
+    this.#date = date;
+    this.#orders = orders;
   }
 
-  calculateOrderAmount() {
-    return this.#orderDetails.reduce(
+  printResult() {
+    const orderAmount = this.#getOrderAmount();
+    const benefitAmount = this.#getBenefitAmount();
+    const isGiveawayTarget = this.#isGiveawayTarget();
+    const discountAmount = isGiveawayTarget
+      ? benefitAmount - PRICE.giveaway
+      : benefitAmount;
+
+    OutputView.printMenu(this.#orders);
+    OutputView.printOrderAmount(orderAmount);
+    OutputView.printGiveaway(isGiveawayTarget);
+    OutputView.printBenefitDetails(this.#getBenefitDetails());
+    OutputView.printBenefitAmount(benefitAmount);
+    OutputView.printPaymentAmount(orderAmount - discountAmount);
+    OutputView.printBadge(this.#grantBadge());
+  }
+
+  #getOrderAmount() {
+    return this.#orders.reduce(
       (total, { menu, quantity }) => total + PRICE[menu] * quantity,
       0
     );
   }
 
-  isGiveawayRecipient(totalAmount) {
-    return totalAmount >= THRESHOLD.giveaway;
+  #isGiveawayTarget() {
+    return this.#getOrderAmount() >= THRESHOLD.giveaway;
   }
 
-  grantBadge(totalBenefitAmount) {
-    if (totalBenefitAmount >= THRESHOLD.benefit.santa) {
+  #getBenefitDetails() {
+    if (this.#getOrderAmount() < 10000) {
+      return {};
+    }
+
+    const benefit = new Benefit(this.#date, this.#orders);
+    return benefit.checkBenefitDetails(this.#isGiveawayTarget());
+  }
+
+  #getBenefitAmount() {
+    const benefitDetails = this.#getBenefitDetails();
+    return Object.values(benefitDetails).reduce(
+      (total, amount) => total + amount,
+      0
+    );
+  }
+
+  #grantBadge() {
+    const benefitAmount = this.#getBenefitAmount();
+
+    if (benefitAmount >= THRESHOLD.benefit.santa) {
       return BADGE.santa;
     }
 
-    if (totalBenefitAmount >= THRESHOLD.benefit.tree) {
+    if (benefitAmount >= THRESHOLD.benefit.tree) {
       return BADGE.tree;
     }
 
-    if (totalBenefitAmount >= THRESHOLD.benefit.star) {
+    if (benefitAmount >= THRESHOLD.benefit.star) {
       return BADGE.star;
     }
 
-    return NOTHING;
+    return;
   }
 }
 

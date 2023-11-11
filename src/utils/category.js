@@ -13,11 +13,7 @@ function getCategory(menu) {
     return CATEGORY.dessert;
   }
 
-  if (CATEGORY.menu.drink.includes(menu)) {
-    return CATEGORY.drink;
-  }
-
-  return;
+  return CATEGORY.drink;
 }
 
 export default getCategory;
