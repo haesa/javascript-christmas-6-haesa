@@ -1,5 +1,5 @@
 import { CATEGORY, PRICE } from './constants/index.js';
-import DATE from './utils/date.js';
+import DATE from './constants/date.js';
 
 class Benefit {
   static #DEFAULT_DISCOUNT = 1000;
