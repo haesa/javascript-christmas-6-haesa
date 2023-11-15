@@ -12,7 +12,7 @@ class Service {
   }
 
   printResult() {
-    const orderAmount = this.#getOrderAmount();
+    const orderAmount = this.#calculateOrderAmount();
     const benefitAmount = this.#getBenefitAmount();
     const isGiveawayTarget = this.#isGiveawayTarget();
     const discountAmount = isGiveawayTarget
@@ -28,7 +28,7 @@ class Service {
     OutputView.printBadge(this.#grantBadge());
   }
 
-  #getOrderAmount() {
+  #calculateOrderAmount() {
     return this.#orders.reduce(
       (total, { menu, quantity }) => total + PRICE[menu] * quantity,
       0
@@ -36,11 +36,11 @@ class Service {
   }
 
   #isGiveawayTarget() {
-    return this.#getOrderAmount() >= THRESHOLD.giveaway;
+    return this.#calculateOrderAmount() >= THRESHOLD.giveaway;
   }
 
   #getBenefitDetails() {
-    if (this.#getOrderAmount() < 10000) {
+    if (this.#calculateOrderAmount() < 10000) {
       return {};
     }
 
