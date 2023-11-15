@@ -2,45 +2,51 @@
 
 - [x] 총주문 금액 계산하기
 
-  - `Service: this.calculateOrderAmount()`
+  - `Service: this.#calculateOrderAmount()`
 
 - [x] 증정 이벤트 대상인지 확인한다.
 
-  - `App: this.#isGiveawayRecipient()`
+  - `Service: this.#isGiveawayTarget()`
     - 할인 전 총주문 금액이 12만 원 이상일 때, 샴페인 1개 증정
 
 - [x] 총혜택 금액에 따라 이벤트 배지 부여하기
 
-  - `App: this.#grantBadge()`
+  - `Service: this.#grantBadge()`
     - 5천 원 이상: 별
     - 1만 원 이상: 트리
     - 2만 원 이상: 산타
 
-- [x] 총 할인 내역 계산하기
+- [x] 혜택 내역 확인하기
 
-  - `Discount: this.calculateTotalDiscount()`
+  - `Benefit: this.checkBenefitDetails()`
+    - 할인 내역에 증정 이벤트를 추가한다.
 
-  - [x] 크리스마스 디데이 할인 금액 계산
+- [x] 할인 내역 확인하기
 
-    - `Discount: this.#calculateChristmasDiscount()`
-      - 1일부터 25일까지만 진행한다.
-      - 할인 금액은 1,000원으로 시작해서 하루에 100원씩 증가한다.
+  - `Benefit: this.#checkDiscountDetails()`
+    - 크리스마스 할인, 평일 할인, 주말 할인, 특별 할인을 계산한다.
 
-  - [x] 평일 할인 계산하기
+- [x] 크리스마스 디데이 할인 금액 계산
 
-    - `Discount: this.#calculateWeekdayDiscount()`
-      - 날짜를 7로 나눈 나머지가 1과 2가 아니면 평일이다.
+  - `Benefit: this.#calculateChristmasDiscount()`
+    - 1일부터 25일까지만 진행한다.
+    - 할인 금액은 1,000원으로 시작해서 하루에 100원씩 증가한다.
 
-  - [x] 주말 할인 계산하기
+- [x] 평일 할인 계산하기
 
-    - `Discount: this.#calculateWeekendDiscount()`
-      - 날짜를 7로 나눈 나머지가 1과 2이면 주말이다.
+  - `Benefit: this.#calculateWeekdayDiscount()`
+    - 날짜를 7로 나눈 나머지가 1과 2가 아니면 평일이다.
 
-  - [x] 특별 할인 계산하기
+- [x] 주말 할인 계산하기
 
-    - `Discount: this.#calculateSpecialDiscount()`
-      - 일요일에 할인한다(날짜를 7로 나눈 나머지가 3이면 일요일이다).
-      - 25일(크리스마스)에 할인한다.
+  - `Benefit: this.#calculateWeekendDiscount()`
+    - 날짜를 7로 나눈 나머지가 1과 2이면 주말이다.
+
+- [x] 특별 할인 계산하기
+
+  - `Benefit: this.#calculateSpecialDiscount()`
+    - 일요일에 할인한다(날짜를 7로 나눈 나머지가 3이면 일요일이다).
+    - 25일(크리스마스)에 할인한다.
 
 ## 주의 사항
 
