@@ -4,7 +4,7 @@
 - 평일 할인 구하는 기능 - `discountWeekday()`
 - 주말 할인 구하는 기능 - `discountWeekend()`
 - 특별 할인 구하는 기능 - `discountSpecial()`
-- 증정 이벤트 대상인지 확인하는 기능 - `isGiveaway`
+- 증정 이벤트 대상인지 확인하는 기능 - `isGiveaway()`
 - 총주문 금액 구하는 기능 - `calculateOrderAmount()`
 - 총혜택 금액 구하는 기능 - `calculateBenefitAmount()`
 - 이벤트 배지 구하는 기능 - `grantBadge()`
