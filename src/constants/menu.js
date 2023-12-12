@@ -1,4 +1,5 @@
-const MENUS = new Set([
+const DRINK = new Set(['제로콜라', '레드와인', '샴페인']);
+const MENU = new Set([
   '양송이수프',
   '타파스',
   '시저샐러드',
@@ -13,4 +14,4 @@ const MENUS = new Set([
   '샴페인',
 ]);
 
-export default MENUS;
+export { DRINK, MENU };

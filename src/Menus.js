@@ -1,5 +1,6 @@
-import { MENUS } from './constants';
+import { MENU, DRINK } from './constants';
 
-const hasMenu = (menu) => MENUS.has(menu);
+const hasMenu = (menu) => MENU.has(menu);
+const hasDrink = (menu) => DRINK.has(menu);
 
-export default hasMenu;
+export { hasDrink, hasMenu };

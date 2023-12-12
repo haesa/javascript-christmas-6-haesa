@@ -23,6 +23,12 @@ describe('InputValidator 테스트', () => {
     );
   });
 
+  test('음료만 주문하면 예외가 발생한다.', () => {
+    expect(() => InputValidator.validateOrders('샴페인-1,제로콜라-1')).toThrow(
+      ERROR_MESSAGE.orders
+    );
+  });
+
   test('중복 메뉴를 입력한 경우 예외가 발생한다.', () => {
     expect(() =>
       InputValidator.validateOrders('시저샐러드-1,시저샐러드-1')
@@ -32,6 +38,12 @@ describe('InputValidator 테스트', () => {
   test('메뉴의 개수로 1 이상의 숫자가 아닌 값이 입력되면 예외가 발생한다.', () => {
     expect(() =>
       InputValidator.validateOrders('크리스마스파스타-1,시저샐러드-0')
+    ).toThrow(ERROR_MESSAGE.orders);
+  });
+
+  test('메뉴의 개수가 20개가 넘어가면 예외가 발생한다.', () => {
+    expect(() =>
+      InputValidator.validateOrders('크리스마스파스타-10,시저샐러드-11')
     ).toThrow(ERROR_MESSAGE.orders);
   });
 });

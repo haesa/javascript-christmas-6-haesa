@@ -3,7 +3,7 @@ import { DISCOUNT, EVENT_DATE } from './discount';
 import ERROR_MESSAGE from './error';
 import GIVEAWAY_THRESHOLD from './giveaway';
 import INPUT_MESSAGE from './input';
-import MENUS from './menu';
+import { MENU, DRINK } from './menu';
 import OUTPUT_MESSAGE from './output';
 import REGEX from './regex';
 
@@ -14,12 +14,13 @@ export {
   BADGE,
   BADGE_THRESHOLD,
   DISCOUNT,
+  DRINK,
   ERROR_MESSAGE,
   EVENT_DATE,
   GIVEAWAY_EVENT,
   GIVEAWAY_THRESHOLD,
   INPUT_MESSAGE,
-  MENUS,
+  MENU,
   NOTHING,
   OUTPUT_MESSAGE,
   REGEX,

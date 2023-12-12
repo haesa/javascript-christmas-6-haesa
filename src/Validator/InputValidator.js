@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE, REGEX } from '../constants';
-import hasMenu from '../Menus';
+import { hasDrink, hasMenu } from '../Menus';
 
 const InputValidator = {
   validateDate(input) {
@@ -22,12 +22,21 @@ const InputValidator = {
       throw new Error(ERROR_MESSAGE.orders);
     }
 
+    if (menus.every((menu) => hasDrink(menu))) {
+      throw new Error(ERROR_MESSAGE.orders);
+    }
+
     if (new Set(menus).size !== menus.length) {
       throw new Error(ERROR_MESSAGE.orders);
     }
 
     const amounts = input.split(',').map((order) => order.split('-')[2]);
     if (amounts.some((amount) => !REGEX.number(amount) || Number(amount) < 1)) {
+      throw new Error(ERROR_MESSAGE.orders);
+    }
+
+    const totalAmount = amounts.reduce((total, amount) => total + amount, 0);
+    if (totalAmount > 20) {
       throw new Error(ERROR_MESSAGE.orders);
     }
   },
