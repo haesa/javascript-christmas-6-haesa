@@ -1,5 +1,6 @@
 # 🚀 기능 목록
 
+- 할인 내역을 구하는 기능 - `getDiscountList()`
 - 크리스마스 할인 구하는 기능 - `discountChristmas()`
 - 평일 할인 구하는 기능 - `discountWeekday()`
 - 주말 할인 구하는 기능 - `discountWeekend()`
