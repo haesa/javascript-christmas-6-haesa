@@ -2,6 +2,7 @@ class Discount {
   static #CHRISTMAS_INITIAL_DISCOUNT = 1_000;
   static #CHRISTMAS_DISCOUNT = 100;
   static #WEEK_DISCOUNT = 2_023;
+  static #WEEKEND = new Set([1, 2]);
   #date;
   #orderList;
 
@@ -22,7 +23,7 @@ class Discount {
   }
 
   discountWeekday() {
-    if (this.#date % 7 < 3) {
+    if (Discount.#WEEKEND.has(this.#date % 7)) {
       return 0;
     }
 
