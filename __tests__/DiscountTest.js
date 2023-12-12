@@ -6,19 +6,11 @@ describe('Discount 클래스 테스트', () => {
 
     let discount = new Discount(23, orderList);
     expect(discount.getDiscountList()).toEqual([
-      { event: 'christmas', amount: 3200 },
-      { event: 'weekday', amount: 0 },
-      { event: 'weekend', amount: 0 },
-      { event: 'special', amount: 0 },
+      { event: '크리스마스 디데이 할인', amount: 3200 },
     ]);
 
     discount = new Discount(30, orderList);
-    expect(discount.getDiscountList()).toEqual([
-      { event: 'christmas', amount: 0 },
-      { event: 'weekday', amount: 0 },
-      { event: 'weekend', amount: 0 },
-      { event: 'special', amount: 0 },
-    ]);
+    expect(discount.getDiscountList()).toEqual([]);
   });
 
   test('평일 할인 테스트', () => {
@@ -26,10 +18,7 @@ describe('Discount 클래스 테스트', () => {
 
     let discount = new Discount(26, orderList);
     expect(discount.getDiscountList()).toEqual([
-      { event: 'christmas', amount: 0 },
-      { event: 'weekday', amount: 4046 },
-      { event: 'weekend', amount: 0 },
-      { event: 'special', amount: 0 },
+      { event: '평일 할인', amount: 4046 },
     ]);
   });
 
@@ -40,10 +29,7 @@ describe('Discount 클래스 테스트', () => {
 
     const discount = new Discount(30, orderList);
     expect(discount.getDiscountList()).toEqual([
-      { event: 'christmas', amount: 0 },
-      { event: 'weekday', amount: 0 },
-      { event: 'weekend', amount: 2023 },
-      { event: 'special', amount: 0 },
+      { event: '주말 할인', amount: 2023 },
     ]);
   });
 
@@ -54,10 +40,7 @@ describe('Discount 클래스 테스트', () => {
 
     const discount = new Discount(31, orderList);
     expect(discount.getDiscountList()).toEqual([
-      { event: 'christmas', amount: 0 },
-      { event: 'weekday', amount: 0 },
-      { event: 'weekend', amount: 0 },
-      { event: 'special', amount: 1000 },
+      { event: '특별 할인', amount: 1000 },
     ]);
   });
 });

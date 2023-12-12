@@ -11,11 +11,11 @@ class Discount {
 
   getDiscountList() {
     return [
-      { event: 'christmas', amount: this.#discountChristmas() },
-      { event: 'weekday', amount: this.#discountWeekday() },
-      { event: 'weekend', amount: this.#discountWeekend() },
-      { event: 'special', amount: this.#discountSpecial() },
-    ];
+      { event: '크리스마스 디데이 할인', amount: this.#discountChristmas() },
+      { event: '평일 할인', amount: this.#discountWeekday() },
+      { event: '주말 할인', amount: this.#discountWeekend() },
+      { event: '특별 할인', amount: this.#discountSpecial() },
+    ].filter((event) => event.amount !== 0);
   }
 
   #discountChristmas() {

@@ -1,4 +1,4 @@
-import { BADGE, BADGE_THRESHOLD } from '../constants';
+import { BADGE, BADGE_THRESHOLD, NOTHING } from '../constants';
 
 function grantBadge(benefitAmount) {
   if (benefitAmount >= BADGE_THRESHOLD.santa) {
@@ -12,6 +12,8 @@ function grantBadge(benefitAmount) {
   if (benefitAmount >= BADGE_THRESHOLD.star) {
     return BADGE.star;
   }
+
+  return NOTHING;
 }
 
 export default grantBadge;
