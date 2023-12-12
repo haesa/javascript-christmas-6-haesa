@@ -3,11 +3,12 @@ const OUTPUT_MESSAGE = Object.freeze({
   previewMessage: (date) =>
     `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
   order: (order) => `${order.menu} ${order.amount}개`,
-  orderAmount: (orderAmount) => `${orderAmount}원`,
+  orderAmount: (orderAmount) => `${orderAmount.toLocaleString()}원`,
   giveaway: '샴페인 1개',
-  benefit: (benefit) => `${benefit.event}: ${benefit.amount}`,
-  benefitAmount: (benefitAmount) => `-${benefitAmount}원`,
-  payAmount: (payAmount) => `${payAmount}원`,
+  benefit: (benefit) =>
+    `${benefit.event}: -${benefit.amount.toLocaleString()}원`,
+  benefitAmount: (benefitAmount) => `-${benefitAmount.toLocaleString()}원`,
+  payAmount: (payAmount) => `${payAmount.toLocaleString()}원`,
 });
 
 export default OUTPUT_MESSAGE;
