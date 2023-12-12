@@ -1,11 +1,6 @@
+import DISCOUNT from '../constants';
+
 class Discount {
-  static #CHRISTMAS_INITIAL_DISCOUNT = 1_000;
-  static #CHRISTMAS_DISCOUNT = 100;
-  static #WEEK_DISCOUNT = 2_023;
-  static #SPECIAL_DISCOUNT = 1_000;
-  static #WEEKEND = new Set([1, 2]);
-  static #WEEKDAY = new Set([3, 4, 5, 6, 0]);
-  static #SPECIAL_DAY = new Set([3, 10, 17, 24, 25, 31]);
   #date;
   #orderList;
 
@@ -20,13 +15,13 @@ class Discount {
     }
 
     return (
-      Discount.#CHRISTMAS_INITIAL_DISCOUNT +
-      Discount.#CHRISTMAS_DISCOUNT * (this.#date - 1)
+      DISCOUNT.christmasInitialDiscount +
+      DISCOUNT.christmasDiscount * (this.#date - 1)
     );
   }
 
   discountWeekday() {
-    if (Discount.#WEEKEND.has(this.#date % 7)) {
+    if (DISCOUNT.weekend.has(this.#date % 7)) {
       return 0;
     }
 
@@ -37,11 +32,11 @@ class Discount {
       (total, menu) => total + menu.amount,
       0
     );
-    return totalAmount * Discount.#WEEK_DISCOUNT;
+    return totalAmount * DISCOUNT.weekDiscount;
   }
 
   discountWeekend() {
-    if (Discount.#WEEKDAY.has(this.#date % 7)) {
+    if (DISCOUNT.weekday.has(this.#date % 7)) {
       return 0;
     }
 
@@ -52,15 +47,15 @@ class Discount {
       (total, menu) => total + menu.amount,
       0
     );
-    return totalAmount * Discount.#WEEK_DISCOUNT;
+    return totalAmount * DISCOUNT.weekDiscount;
   }
 
   discountSpecial() {
-    if (!Discount.#SPECIAL_DAY.has(this.#date)) {
+    if (!DISCOUNT.specialDay.has(this.#date)) {
       return 0;
     }
 
-    return Discount.#SPECIAL_DISCOUNT;
+    return DISCOUNT.specialDiscount;
   }
 }
 
