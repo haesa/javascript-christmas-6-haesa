@@ -1,5 +1,7 @@
-import { INPUT_MESSAGE } from '../constants';
-import InputValidator from '../Validator/InputValidator';
+import { Console } from '@woowacourse/mission-utils';
+import { INPUT_MESSAGE } from '../constants/index.js';
+import InputValidator from '../Validator/InputValidator.js';
+import MENU_CATEGORY from '../MenuCategory.js';
 
 const InputView = {
   async readDate() {
@@ -12,8 +14,12 @@ const InputView = {
     const input = await Console.readLineAsync(INPUT_MESSAGE.orders);
     InputValidator.validateOrders(input);
     return input.split(',').map((order) => {
-      const orderArr = order.split('-');
-      return { menu: orderArr[0], amount: Number(orderArr[1]) };
+      const [menu, amount] = order.split('-');
+      return {
+        menu,
+        amount: Number(amount),
+        category: MENU_CATEGORY.getCategory(menu),
+      };
     });
   },
 };
