@@ -1,7 +1,7 @@
 class Discount {
-  static #christmasInitialDiscount = 1_000;
-  static #christmasDiscount = 100;
-  static #weekDiscount = 2_023;
+  static #CHRISTMAS_INITIAL_DISCOUNT = 1_000;
+  static #CHRISTMAS_DISCOUNT = 100;
+  static #WEEK_DISCOUNT = 2_023;
   #date;
   #orderList;
 
@@ -16,8 +16,8 @@ class Discount {
     }
 
     return (
-      Discount.#christmasInitialDiscount +
-      Discount.#christmasDiscount * (this.#date - 1)
+      Discount.#CHRISTMAS_INITIAL_DISCOUNT +
+      Discount.#CHRISTMAS_DISCOUNT * (this.#date - 1)
     );
   }
 
@@ -33,7 +33,7 @@ class Discount {
       (total, menu) => total + menu.amount,
       0
     );
-    return totalAmount * Discount.#weekDiscount;
+    return totalAmount * Discount.#WEEK_DISCOUNT;
   }
 }
 
