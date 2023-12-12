@@ -21,4 +21,10 @@ describe('Discount 클래스 테스트', () => {
     const result = discount.discountWeekday();
     expect(result).toBe(4046);
   });
+
+  test('주말 할인 테스트', () => {
+    const discount = new Discount(30, orderList);
+    const result = discount.discountWeekend();
+    expect(result).toBe(2023);
+  });
 });

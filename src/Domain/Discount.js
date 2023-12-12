@@ -3,6 +3,7 @@ class Discount {
   static #CHRISTMAS_DISCOUNT = 100;
   static #WEEK_DISCOUNT = 2_023;
   static #WEEKEND = new Set([1, 2]);
+  static #WEEKDAY = new Set([3, 4, 5, 6, 0]);
   #date;
   #orderList;
 
@@ -31,6 +32,21 @@ class Discount {
       (order) => order.category === 'dessert'
     );
     const totalAmount = dessertList.reduce(
+      (total, menu) => total + menu.amount,
+      0
+    );
+    return totalAmount * Discount.#WEEK_DISCOUNT;
+  }
+
+  discountWeekend() {
+    if (Discount.#WEEKDAY.has(this.#date % 7)) {
+      return 0;
+    }
+
+    const maintList = this.#orderList.filter(
+      (order) => order.category === 'main'
+    );
+    const totalAmount = maintList.reduce(
       (total, menu) => total + menu.amount,
       0
     );
