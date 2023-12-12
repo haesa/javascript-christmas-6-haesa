@@ -3,9 +3,13 @@ const DISCOUNT = Object.freeze({
   christmasDiscount: 100,
   weekDiscount: 2_023,
   specialDiscount: 1_000,
-  weekend: new Set([1, 2]),
-  weekday: new Set([3, 4, 5, 6, 0]),
-  specialDay: new Set([3, 10, 17, 24, 25, 31]),
 });
 
-export default DISCOUNT;
+const EVENT_DATE = {
+  christmas: (date) => date <= 25,
+  weekend: (date) => new Set([1, 2]).has(date % 7),
+  weekday: (date) => new Set([3, 4, 5, 6, 0]).has(date % 7),
+  special: (date) => new Set([3, 10, 17, 24, 25, 31]).has(date),
+};
+
+export { DISCOUNT, EVENT_DATE };

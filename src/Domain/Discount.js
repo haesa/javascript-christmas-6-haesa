@@ -1,4 +1,4 @@
-import { DISCOUNT } from '../constants';
+import { DISCOUNT, EVENT_DATE } from '../constants';
 
 class Discount {
   #date;
@@ -19,7 +19,7 @@ class Discount {
   }
 
   #discountChristmas() {
-    if (this.#date > 25) {
+    if (!EVENT_DATE.christmas(this.#date)) {
       return 0;
     }
 
@@ -30,7 +30,7 @@ class Discount {
   }
 
   #discountWeekday() {
-    if (DISCOUNT.weekend.has(this.#date % 7)) {
+    if (EVENT_DATE.weekend(this.#date)) {
       return 0;
     }
 
@@ -45,7 +45,7 @@ class Discount {
   }
 
   #discountWeekend() {
-    if (DISCOUNT.weekday.has(this.#date % 7)) {
+    if (EVENT_DATE.weekday(this.#date)) {
       return 0;
     }
 
@@ -60,7 +60,7 @@ class Discount {
   }
 
   #discountSpecial() {
-    if (!DISCOUNT.specialDay.has(this.#date)) {
+    if (!EVENT_DATE.special(this.#date)) {
       return 0;
     }
 

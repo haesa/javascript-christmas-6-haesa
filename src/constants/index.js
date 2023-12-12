@@ -1,5 +1,5 @@
 import { BADGE, BADGE_THRESHOLD } from './badge';
-import DISCOUNT from './discount';
+import { DISCOUNT, EVENT_DATE } from './discount';
 import GIVEAWAY_THRESHOLD from './giveaway';
 
-export { BADGE, BADGE_THRESHOLD, DISCOUNT, GIVEAWAY_THRESHOLD };
+export { BADGE, BADGE_THRESHOLD, DISCOUNT, EVENT_DATE, GIVEAWAY_THRESHOLD };
