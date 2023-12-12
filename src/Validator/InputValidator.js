@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE, REGEX } from '../constants';
-import { hasDrink, hasMenu } from '../Menus';
+import { ERROR_MESSAGE, REGEX } from '../constants/index.js';
+import MENU_CATEGORY from '../MenuCategory.js';
 
 const InputValidator = {
   validateDate(input) {
@@ -18,11 +18,11 @@ const InputValidator = {
     }
 
     const menus = input.split(',').map((order) => order.split('-')[0]);
-    if (menus.some((menu) => !hasMenu(menu))) {
+    if (menus.some((menu) => !MENU_CATEGORY.hasMenu(menu))) {
       throw new Error(ERROR_MESSAGE.orders);
     }
 
-    if (menus.every((menu) => hasDrink(menu))) {
+    if (menus.every((menu) => MENU_CATEGORY.hasDrink(menu))) {
       throw new Error(ERROR_MESSAGE.orders);
     }
 
@@ -30,7 +30,7 @@ const InputValidator = {
       throw new Error(ERROR_MESSAGE.orders);
     }
 
-    const amounts = input.split(',').map((order) => order.split('-')[2]);
+    const amounts = input.split(',').map((order) => order.split('-')[1]);
     if (amounts.some((amount) => !REGEX.number(amount) || Number(amount) < 1)) {
       throw new Error(ERROR_MESSAGE.orders);
     }
