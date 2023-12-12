@@ -1,36 +1,63 @@
 import Discount from '../src/Domain/Discount';
 
-const orderList = [
-  { menu: '크리스마스파스타', amount: 1, category: 'main' },
-  { menu: '아이스크림', amount: 2, category: 'dessert' },
-];
-
 describe('Discount 클래스 테스트', () => {
   test('크리스마스 할인 테스트', () => {
-    let discount = new Discount(23, orderList);
-    let result = discount.discountChristmas();
-    expect(result).toBe(3200);
+    const orderList = [{ menu: '아이스크림', amount: 2, category: 'dessert' }];
 
-    discount = new Discount(31, orderList);
-    result = discount.discountChristmas();
-    expect(result).toBe(0);
+    let discount = new Discount(23, orderList);
+    expect(discount.getDiscountList()).toEqual([
+      { event: 'christmas', amount: 3200 },
+      { event: 'weekday', amount: 0 },
+      { event: 'weekend', amount: 0 },
+      { event: 'special', amount: 0 },
+    ]);
+
+    discount = new Discount(30, orderList);
+    expect(discount.getDiscountList()).toEqual([
+      { event: 'christmas', amount: 0 },
+      { event: 'weekday', amount: 0 },
+      { event: 'weekend', amount: 0 },
+      { event: 'special', amount: 0 },
+    ]);
   });
 
   test('평일 할인 테스트', () => {
-    const discount = new Discount(4, orderList);
-    const result = discount.discountWeekday();
-    expect(result).toBe(4046);
+    const orderList = [{ menu: '아이스크림', amount: 2, category: 'dessert' }];
+
+    let discount = new Discount(26, orderList);
+    expect(discount.getDiscountList()).toEqual([
+      { event: 'christmas', amount: 0 },
+      { event: 'weekday', amount: 4046 },
+      { event: 'weekend', amount: 0 },
+      { event: 'special', amount: 0 },
+    ]);
   });
 
   test('주말 할인 테스트', () => {
+    const orderList = [
+      { menu: '크리스마스파스타', amount: 1, category: 'main' },
+    ];
+
     const discount = new Discount(30, orderList);
-    const result = discount.discountWeekend();
-    expect(result).toBe(2023);
+    expect(discount.getDiscountList()).toEqual([
+      { event: 'christmas', amount: 0 },
+      { event: 'weekday', amount: 0 },
+      { event: 'weekend', amount: 2023 },
+      { event: 'special', amount: 0 },
+    ]);
   });
 
   test('특별 할인 테스트', () => {
+    const orderList = [
+      { menu: '크리스마스파스타', amount: 1, category: 'main' },
+    ];
+
     const discount = new Discount(31, orderList);
-    const result = discount.discountSpecial();
-    expect(result).toBe(1000);
+    expect(discount.getDiscountList()).toEqual([
+      { event: 'christmas', amount: 0 },
+      { event: 'weekday', amount: 0 },
+      { event: 'weekend', amount: 0 },
+      { event: 'special', amount: 1000 },
+    ]);
   });
 });

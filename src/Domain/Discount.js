@@ -9,7 +9,16 @@ class Discount {
     this.#orderList = orderList;
   }
 
-  discountChristmas() {
+  getDiscountList() {
+    return [
+      { event: 'christmas', amount: this.#discountChristmas() },
+      { event: 'weekday', amount: this.#discountWeekday() },
+      { event: 'weekend', amount: this.#discountWeekend() },
+      { event: 'special', amount: this.#discountSpecial() },
+    ];
+  }
+
+  #discountChristmas() {
     if (this.#date > 25) {
       return 0;
     }
@@ -20,7 +29,7 @@ class Discount {
     );
   }
 
-  discountWeekday() {
+  #discountWeekday() {
     if (DISCOUNT.weekend.has(this.#date % 7)) {
       return 0;
     }
@@ -35,7 +44,7 @@ class Discount {
     return totalAmount * DISCOUNT.weekDiscount;
   }
 
-  discountWeekend() {
+  #discountWeekend() {
     if (DISCOUNT.weekday.has(this.#date % 7)) {
       return 0;
     }
@@ -50,7 +59,7 @@ class Discount {
     return totalAmount * DISCOUNT.weekDiscount;
   }
 
-  discountSpecial() {
+  #discountSpecial() {
     if (!DISCOUNT.specialDay.has(this.#date)) {
       return 0;
     }
