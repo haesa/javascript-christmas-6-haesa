@@ -35,10 +35,14 @@ const InputValidator = {
       throw new Error(ERROR_MESSAGE.orders);
     }
 
-    const totalAmount = amounts.reduce((total, amount) => total + amount, 0);
+    const totalAmount = amounts.reduce(
+      (total, amount) => total + Number(amount),
+      0
+    );
     if (totalAmount > 20) {
       throw new Error(ERROR_MESSAGE.orders);
     }
   },
 };
+
 export default InputValidator;
