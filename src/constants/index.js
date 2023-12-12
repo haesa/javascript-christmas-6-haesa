@@ -1,3 +1,4 @@
+import { BADGE, BADGE_THRESHOLD } from './badge';
 import DISCOUNT from './discount';
 
-export default DISCOUNT;
+export { BADGE, BADGE_THRESHOLD, DISCOUNT };

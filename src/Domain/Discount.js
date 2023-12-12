@@ -1,4 +1,4 @@
-import DISCOUNT from '../constants';
+import { DISCOUNT } from '../constants';
 
 class Discount {
   #date;
