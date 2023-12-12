@@ -1,0 +1,3 @@
+const GIVEAWAY_THRESHOLD = 120_000;
+
+export default GIVEAWAY_THRESHOLD;

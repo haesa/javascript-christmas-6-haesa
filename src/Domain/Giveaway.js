@@ -1,7 +1,7 @@
-const THRESHOLD_AMOUNT = 120_000;
+import { GIVEAWAY_THRESHOLD } from '../constants';
 
 function isGiveaway(orderAmount) {
-  return orderAmount >= THRESHOLD_AMOUNT;
+  return orderAmount >= GIVEAWAY_THRESHOLD;
 }
 
 export default isGiveaway;
