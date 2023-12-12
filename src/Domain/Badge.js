@@ -1,4 +1,4 @@
-import { BADGE, BADGE_THRESHOLD, NOTHING } from '../constants';
+import { BADGE, BADGE_THRESHOLD, NOTHING } from '../constants/index.js';
 
 function grantBadge(benefitAmount) {
   if (benefitAmount >= BADGE_THRESHOLD.santa) {

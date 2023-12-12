@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OUTPUT_MESSAGE, GIVEAWAY_EVENT, NOTHING } from '../constants';
+import { OUTPUT_MESSAGE, GIVEAWAY_EVENT, NOTHING } from '../constants/index.js';
+import grantBadge from '../Domain/Badge.js';
 
 const OutputView = {
   printHello() {
@@ -69,9 +70,9 @@ const OutputView = {
     OutputView.printNewLine();
   },
 
-  printBadge(badge) {
+  printBadge(benefitAmount) {
     Console.print('<12월 이벤트 배지>');
-    Console.print(badge);
+    Console.print(grantBadge(benefitAmount));
   },
 
   printError(error) {

@@ -1,8 +1,8 @@
-import Discount from './Domain/Discount';
-import InputView from './View/InputView';
-import OutputView from './View/OutputView';
-import isGiveaway from './Domain/isGiveaway';
-import { GIVEAWAY_EVENT } from './constants';
+import { GIVEAWAY_EVENT, PRICE } from './constants/index.js';
+import Discount from './Domain/Discount.js';
+import InputView from './View/InputView.js';
+import OutputView from './View/OutputView.js';
+import isGiveaway from './Domain/Giveaway.js';
 
 class App {
   #date;
@@ -39,7 +39,10 @@ class App {
   }
 
   #calculateOrderAmount() {
-    return this.#orderList.reduce((total, order) => total + order.amount, 0);
+    return this.#orderList.reduce(
+      (total, order) => total + PRICE[order.menu] * order.amount,
+      0
+    );
   }
 
   #getBenefitList(orderAmount) {
@@ -62,7 +65,7 @@ class App {
     OutputView.printBenefitList(this.#benefitList);
     OutputView.printBenefitAmount(benefitAmount);
     OutputView.printPayAmount(orderAmount, this.#benefitList);
-    OutputView.printBadge(grantBadge(benefitAmount));
+    OutputView.printBadge(benefitAmount);
   }
 }
 

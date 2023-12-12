@@ -1,4 +1,4 @@
-import { DISCOUNT, EVENT_DATE } from '../constants';
+import { DISCOUNT, EVENT_DATE } from '../constants/index.js';
 
 class Discount {
   #date;
@@ -35,7 +35,7 @@ class Discount {
     }
 
     const dessertList = this.#orderList.filter(
-      (order) => order.category === 'dessert'
+      (order) => order.category === '디저트'
     );
     const totalAmount = dessertList.reduce(
       (total, menu) => total + menu.amount,
@@ -50,7 +50,7 @@ class Discount {
     }
 
     const maintList = this.#orderList.filter(
-      (order) => order.category === 'main'
+      (order) => order.category === '메인'
     );
     const totalAmount = maintList.reduce(
       (total, menu) => total + menu.amount,
