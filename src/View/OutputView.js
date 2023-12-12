@@ -42,7 +42,6 @@ const OutputView = {
 
     if (benefitList.length === 0) {
       Console.print(NOTHING);
-      OutputView.printNewLine();
     }
 
     benefitList.forEach((benefit) =>

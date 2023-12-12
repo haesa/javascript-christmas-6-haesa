@@ -7,7 +7,8 @@ const OUTPUT_MESSAGE = Object.freeze({
   giveaway: '샴페인 1개',
   benefit: (benefit) =>
     `${benefit.event}: -${benefit.amount.toLocaleString()}원`,
-  benefitAmount: (benefitAmount) => `-${benefitAmount.toLocaleString()}원`,
+  benefitAmount: (benefitAmount) =>
+    `${benefitAmount === 0 ? '0' : `-${benefitAmount.toLocaleString()}`}원`,
   payAmount: (payAmount) => `${payAmount.toLocaleString()}원`,
 });
 
